@@ -1,5 +1,6 @@
 import Image from "next/image"
 import styles from "./style.module.scss"
+import BidForm from "../BidForm"
 
 
 export const AuctionCard = () => {
@@ -14,6 +15,29 @@ export const AuctionCard = () => {
                     </div>
                 </div>
                 <div className={styles.auctionCard__wrapper__footer}>
+                    <div className={styles.auctionCard__wrapper__footer__upper}>
+                        <div className={styles.auctionCard__wrapper__footer__upper__bidStatus}>
+                            <div>
+                            <h1>Current Bid</h1><br/>
+                            <h2>31.00TRY</h2>
+                            </div>
+                            <div>
+                            <h1>From</h1><br/>
+                            <h2>Merto</h2>
+                            </div>
+                        </div>
+                        <div className={styles.auctionCard__wrapper__footer__upper__bidForm}>
+                        <BidForm />
+                        </div>
+                    </div>
+                    <div className={styles.auctionCard__wrapper__footer__bottom}>
+                        <div className={styles.auctionCard__wrapper__footer__bottom__status}>
+                            <div className={styles.auctionCard__wrapper__footer__bottom__liveButton}/>
+                            <div>
+                                <h3>Live</h3>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>
