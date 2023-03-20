@@ -1,7 +1,9 @@
+"use client"
 import '@/style/reset.scss'
 import '@/style/global.scss'
+import 'react-toastify/dist/ReactToastify.css';
 import { Inter } from 'next/font/google'
-
+import { ToastContainer } from 'react-toastify'
 
 export const metadata = {
   title: 'Create Next App',
@@ -11,7 +13,11 @@ const inter = Inter({ subsets: ['latin'] })
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={inter.className}>
-      <body>{children}</body>
+      <body>
+        <div area-hidden="true" className='overlay' />
+        {children}
+        <ToastContainer theme='dark'/>
+        </body>
     </html>
   )
 }

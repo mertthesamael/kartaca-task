@@ -4,7 +4,7 @@ import credentials from "./kartaca-auction-firebase-adminsdk-d4jfr-aa352b479f.js
 
 
 //Initialize firebase-admin sdk
-if(!admin.credential){
+if(!admin.credential.cert){
   admin.initializeApp({
     credential:admin.credential.cert(credentials)
   })
@@ -21,7 +21,8 @@ export async function POST(request) {
       email:res.email,
       password:res.password,
       emailVerified:false,
-      disabled:false
+      disabled:false,
+      displayName:res.name
       
     })
     return NextResponse.json({ 'data':userResponse })
