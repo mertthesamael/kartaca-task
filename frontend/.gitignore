@@ -30,4 +30,5 @@ yarn-error.log*
 
 # vercel
 .vercel
-/app/api/hello/kartaca-auction-firebase-adminsdk-d4jfr-aa352b479f.json
+/app/api/kartaca-auction-firebase-adminsdk-d4jfr-aa352b479f.json
+/config/firebase.js

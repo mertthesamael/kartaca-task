@@ -3,7 +3,7 @@ import styles from "./style.module.scss"
 import BidForm from "../BidForm"
 
 
-export const AuctionCard = () => {
+export const AuctionCard = ({name}) => {
 
     return(
         <div className={styles.auctionCard}>
@@ -11,7 +11,7 @@ export const AuctionCard = () => {
                 <Image src='https://doublethedonation.com/wp-content/uploads/2022/06/signed-football-1604021_1280-2.jpg' fill style={{objectFit:'cover'}}/>
                 <div className={styles.auctionCard__wrapper__header}>
                     <div className={styles.auctionCard__wrapper__header__title}>
-                    <h1>Mertcan Ener Imzalı Top</h1>
+                    <h1>{name}</h1>
                     </div>
                 </div>
                 <div className={styles.auctionCard__wrapper__footer}>

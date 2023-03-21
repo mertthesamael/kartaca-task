@@ -10,7 +10,7 @@ const SignupForm = () => {
     const signupHandler = async(e) => {
         e.preventDefault()
         try{
-            let data = await axios.post('api/hello',{email:e.target.email.value,password:password,name:e.target.name.valu})
+            let data = await axios.post('api/signup',{email:e.target.email.value,password:password,name:e.target.name.value})
             console.log(data)
             toast.success("Your account has been created!")
         }catch(err){
