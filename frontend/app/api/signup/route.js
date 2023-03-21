@@ -1,38 +1,17 @@
+import axios from "axios";
 import { NextResponse } from "next/server";
-import admin from "firebase-admin"
-import credentials from "../kartaca-auction-firebase-adminsdk-d4jfr-909fdd36b2.json"
 
-
-//Initialize firebase-admin sdk
-if(!admin.credential.cert){
-  admin.initializeApp({
-    credential:admin.credential.cert(credentials)
-  })
-
-  //Main database reference
-}
-
-export async function GET(request) {
-  return NextResponse.json({"test":'data'})
-}
 
 export async function POST(request) {
-  const req = await request.json();
-  const db = admin.firestore()
+  const req = await request.json()
 
-    const userResponse = await admin.auth().createUser({
-      email:req.email,
-      password:req.password,
-      emailVerified:false,
-      disabled:false,
-      displayName:req.name
-      
-    })
-    await db.collection('user').doc(`/${req.email}/`).create({
-      id: Date.now(),
-      name: req.name,
-      email: req.email
-  })
-    return NextResponse.json({ 'data':userResponse })
-  
+try{
+
+  let data = await axios.post('http://127.0.0.1:5001/kartaca-auction/us-central1/app/signup',{email:req.email,password:req.password,name:req.name})
+  console.log(data.data)
+return NextResponse.json({'response':200})
+}catch(err){
+  console.log(err.message)
+}
+
 }

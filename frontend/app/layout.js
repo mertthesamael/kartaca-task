@@ -4,6 +4,7 @@ import '@/style/global.scss'
 import 'react-toastify/dist/ReactToastify.css';
 import { Inter } from 'next/font/google'
 import { ToastContainer } from 'react-toastify'
+import { UserContextWrapper } from '@/store/userContext';
 
 export const metadata = {
   title: 'Create Next App',
@@ -14,9 +15,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={inter.className}>
       <body>
+        <UserContextWrapper>
         <div area-hidden="true" className='overlay' />
         {children}
         <ToastContainer theme='dark'/>
+        </UserContextWrapper>
         </body>
     </html>
   )

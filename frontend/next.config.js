@@ -4,7 +4,7 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: ['cdn.pixabay.com','doublethedonation.com'],
+    domains: ['cdn.pixabay.com','doublethedonation.com','www.thesprucecrafts.com'],
   },
 }
 
