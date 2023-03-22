@@ -3,7 +3,16 @@
     height: 80vh;
     display: flex;
     justify-content: space-evenly;
+    row-gap: 10rem;
     align-items: center;
-
+    flex-wrap: wrap;
     
+    &__profileHandler{
+        width: max-content;
+        height: max-content;
+        position: absolute;
+        top: 3rem;
+        right: 3rem;
+
+    }
 }

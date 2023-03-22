@@ -86,6 +86,13 @@
             transition: all 1s ease;
             display: flex;
             flex-direction: column;
+
+            //GLASSMORPH Design
+            // height: 300px;
+            // background: rgba(0, 0, 0, 0.322);
+            // box-shadow: 0 8px 32px 0 rgba(219, 219, 226, 0.219);
+            // backdrop-filter: blur( 250px );
+            // -webkit-backdrop-filter: blur( 80px );
             &__upper{
                 display: flex;
                 align-items: center;

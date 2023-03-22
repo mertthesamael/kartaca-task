@@ -84,7 +84,20 @@ app.post("/bid", async(req,res) => {
         }
 
 })
-//Delete => delete()
 
+
+app.get('/get_spesific/:collection/:id', (req,res) => {
+  (async () => {
+    console.log(req.params)
+      try{
+         const reqDoc = db.collection(req.params.collection).doc(req.params.id);
+         let productDetail = await reqDoc.get()
+         let response = productDetail.data()
+          return res.status(200).send({status:'Success', data:response})
+      }catch(err){
+          console.log(err)
+      }
+  })()
+})
 //Exports the API to firebase cloud functions
 exports.app = functions.https.onRequest(app);

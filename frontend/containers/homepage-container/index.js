@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import  { collection, onSnapshot, query, } from "firebase/firestore";
 import { db } from "@/config/firebase"
+import ProfileHandler from "@/components/ProfileHandler"
 
 
 const HomePageContainer = () => {
@@ -35,6 +36,9 @@ const HomePageContainer = () => {
     console.log(items)
     return(
         <div className={styles.homePageContainer}>
+            <div className={styles.homePageContainer__profileHandler}>
+            <ProfileHandler />
+            </div>
            {items?.map(item => <AuctionCard id={item.id} image={item.img} status={item.openTime} details={item.lastBid} name={item.name}/>)}
         </div>
     )
