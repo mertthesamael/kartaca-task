@@ -4,10 +4,7 @@ import { createContext, useEffect, useReducer } from "react"
 import { useGetData } from "@/hooks/useGetData";
 
 
-
-
 const UserContext = createContext()
-
 
 
 export const UserContextWrapper = ({children}) => {
@@ -17,12 +14,13 @@ export const UserContextWrapper = ({children}) => {
         status:false
     })
     const {data:userData} = useGetData("user",user?.email)
-    console.log(userData)
+
     
     const checkLogin = () => {
-        getAuth().onAuthStateChanged(function(user) {
-            if (!user) {
-                console.log("User is not logged in")
+        
+            getAuth().onAuthStateChanged(function(user) {
+                if (!user) {
+                    console.log("User is not logged in")
             }else{
                 console.log(user)
                 dispatch({
@@ -35,10 +33,13 @@ export const UserContextWrapper = ({children}) => {
             }
             
         })
+  
     }
     useEffect(() => {
         checkLogin()
     },[userData])
+
+
     const data = {
         name:'Mert',
         currentUser:user

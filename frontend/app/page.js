@@ -2,7 +2,7 @@
 import styles from "./style.module.scss"
 import { HomePageContainer } from '@/containers/homepage-container'
 import { UserContext } from "@/store/userContext"
-import { useContext, useEffect } from "react"
+import { Suspense, useContext, useEffect } from "react"
 import axios from "axios"
 import { useGetData } from "@/hooks/useGetData"
 

@@ -5,19 +5,24 @@ import styles from "./style.module.scss"
 import axios from "axios"
 import { toast } from "react-toastify"
 import { useRouter } from "next/navigation"
+import Spinner from "../Spinner"
 
 const SignupForm = () => {
     const [password, setPassword] = useState("")
     const [error, setError] = useState(false)
+    const [loading, setLoading] = useState(false)
     const route = useRouter()
     const signupHandler = async(e) => {
         e.preventDefault()
-       try{
-
+       setLoading(true)
+        try{
+        
            let data = await axios.post('/api/signup',{email:e.target.email.value,password:password,name:e.target.name.value})
+           setLoading(false)
            toast.success("Your account has been created!")
            route.push('/login')
         }catch(err){
+            setLoading(false)
             toast.error(err.message)
         }
             
@@ -31,7 +36,11 @@ const SignupForm = () => {
        return setError(false)
        
     }
-
+    if(loading){
+        return(
+            <Spinner />
+        )
+    }
     return(
         <form onSubmit={signupHandler} className={styles.signupForm}>
             <input placeholder="Name" name="name" />

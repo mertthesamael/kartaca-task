@@ -53,4 +53,3 @@ export const AuctionCard = ({name,details,status,image, id}) => {
         </div>
     )
 }
-
