@@ -2,10 +2,11 @@ import Image from "next/image"
 import styles from "./style.module.scss"
 import BidForm from "../BidForm"
 import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 
 
-export const AuctionCard = ({name,details,status,image, id}) => {
-
+export const AuctionCard = ({data}) => {
+    const router = useRouter()
     const [isActive, setIsActive] = useState(false)
 
 // useEffect(() => {
@@ -15,12 +16,12 @@ export const AuctionCard = ({name,details,status,image, id}) => {
 // },[])
 
     return(
-        <div className={styles.auctionCard}>
+        <div data-testid='auctionCard' className={styles.auctionCard}>
             <div className={styles.auctionCard__wrapper}>
-                <Image src={image} fill style={{objectFit:'cover'}}/>
+                <Image src={data.img} fill style={{objectFit:'cover'}} alt="Auction Item" sizes="(max-width: 100%) 100%, (max-height: 100%), 100%"/>
                 <div className={styles.auctionCard__wrapper__header}>
                     <div className={styles.auctionCard__wrapper__header__title}>
-                    <h1>{name}</h1>
+                        <h1 onClick={() => router.push(`/${data.id}`)}>{data.name}</h1>
                     </div>
                 </div>
                 <div className={styles.auctionCard__wrapper__footer}>
@@ -28,15 +29,15 @@ export const AuctionCard = ({name,details,status,image, id}) => {
                         <div className={styles.auctionCard__wrapper__footer__upper__bidStatus}>
                             <div>
                             <h1>Current Bid</h1><br/>
-                            <h2>{details.amount}TRY</h2>
+                            <h2>{data.lastBid.amount}TRY</h2>
                             </div>
                             <div>
                             <h1>From</h1><br/>
-                            <h2>{details.from}</h2>
+                            <h2>{data.lastBid.from}</h2>
                             </div>
                         </div>
                         <div className={styles.auctionCard__wrapper__footer__upper__bidForm}>
-                        <BidForm id={id} />
+                        <BidForm item={data} id={data.id} />
                         </div>
                     </div>
                     <div className={styles.auctionCard__wrapper__footer__bottom}>
@@ -47,7 +48,6 @@ export const AuctionCard = ({name,details,status,image, id}) => {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

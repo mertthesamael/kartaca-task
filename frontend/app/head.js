@@ -4,11 +4,12 @@
 const Head = () => {
 
     return(
-        <head>
-            <metadata lang="EN"/>
-            <meta charset="UTF-8"/>
-            <title>Kartaca Auction</title>
-        </head>
+        <>
+        <meta lang="EN"></meta>
+        <meta charSet="UTF-8"/>
+        <title>Kartaca Auction</title>
+        </>
     )
 }
+
 export default Head

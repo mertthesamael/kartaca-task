@@ -1,7 +1,7 @@
-import { getAuth } from "@firebase/auth";
 import reducer from "./userReducer";
 import { createContext, useEffect, useReducer } from "react"
 import { useGetData } from "@/hooks/useGetData";
+import { auth } from "@/config/firebase";
 
 
 const UserContext = createContext()
@@ -17,8 +17,7 @@ export const UserContextWrapper = ({children}) => {
 
     
     const checkLogin = () => {
-        
-            getAuth().onAuthStateChanged(function(user) {
+            auth.onAuthStateChanged(function(user) {
                 if (!user) {
                     console.log("User is not logged in")
             }else{
@@ -34,6 +33,7 @@ export const UserContextWrapper = ({children}) => {
             
         })
   
+  
     }
     useEffect(() => {
         checkLogin()
@@ -41,7 +41,6 @@ export const UserContextWrapper = ({children}) => {
 
 
     const data = {
-        name:'Mert',
         currentUser:user
     }
     return(

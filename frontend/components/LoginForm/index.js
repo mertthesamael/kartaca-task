@@ -11,6 +11,7 @@ import Spinner from "../Spinner"
 const LoginForm = () => {
     const route = useRouter()
     const [loading, setLoading] = useState(false)
+    
     const loginHandler = async(e) => {
         e.preventDefault()
         setLoading(true)
@@ -30,7 +31,7 @@ const LoginForm = () => {
         )
     }
     return(
-        <form onSubmit={loginHandler} className={styles.loginForm}>
+        <form data-testid='loginForm' onSubmit={loginHandler} className={styles.loginForm}>
             <input name='email' placeholder="Email"></input>
             <input name='password' placeholder="password" type="password"></input>
             <MainButton type='submit' content='Login'/>

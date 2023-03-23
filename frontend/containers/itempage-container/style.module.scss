@@ -1,0 +1,16 @@
+.itemPageContainer{
+    width: 70%;
+    height: 80vh;
+    display: grid;
+    place-items: center;
+ 
+}
+
+
+@media screen and (max-width:720px) {
+    .itemPageContainer{
+       width: 80%;
+       height: 90vh;
+    }
+    
+}

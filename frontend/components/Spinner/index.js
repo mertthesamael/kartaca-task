@@ -4,7 +4,7 @@ import styles from "./style.module.scss"
 const Spinner = () => {
 
     return(
-        <div className={styles.spinner}><div/><div/><div/><div/></div>
+        <div data-testid='spinner' className={styles.spinner}><div/><div/><div/><div/></div>
     )
 }
 

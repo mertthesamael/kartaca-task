@@ -65,22 +65,26 @@ app.post('/signup', async(req,res)=>{
 
 })
 
-//Update => put()
-
+//Rout for Bid Sequence
 app.post("/bid", async(req,res) => {
  
         const docRef = db.collection('item').doc(req.body.id)
-        
-        try{
-          docRef.update({
-            lastBid:{
+        console.log(req.body)
+        const currentAmount = req.body.currentAmount;
+        if(currentAmount<req.body.amount){
+          try{
+            docRef.update({
+              lastBid:{
                 amount:req.body.amount,
                 from:req.body.from
-            }
-          })
+              }
+            })
             return res.status(200).send({status:'Success', msg: 'Data Saved'})
-        }catch(err){
+          }catch(err){
             console.log(err)
+          }
+        }else{
+          return res.status(200).send({status:'Error', msg: 'Bid amount must be greater then current.'})
         }
 
 })
@@ -88,7 +92,6 @@ app.post("/bid", async(req,res) => {
 
 app.get('/get_spesific/:collection/:id', (req,res) => {
   (async () => {
-    console.log(req.params)
       try{
          const reqDoc = db.collection(req.params.collection).doc(req.params.id);
          let productDetail = await reqDoc.get()

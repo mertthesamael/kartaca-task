@@ -24,8 +24,8 @@ const ProfileHandler = ({}) => {
         }
     }
     return(
-        <div className={styles.profileHandler}>
-            <div tabindex="0" onBlur={() => setMenuState(false)} onClick={() => setMenuState(!menuState)} className={styles.profileHandler__display}>
+        <div data-testid='profileHandler' className={styles.profileHandler}>
+            <div tabIndex="0" onBlur={() => setMenuState(false)} onClick={() => setMenuState(!menuState)} className={styles.profileHandler__display}>
               {loading? <h1>Loading...</h1> :
                 <>
                 <div className={styles.profileHandler__display__status}/>

@@ -16,8 +16,7 @@ const SignupForm = () => {
         e.preventDefault()
        setLoading(true)
         try{
-        
-           let data = await axios.post('/api/signup',{email:e.target.email.value,password:password,name:e.target.name.value})
+           await axios.post('/api/signup',{email:e.target.email.value,password:password,name:e.target.name.value})
            setLoading(false)
            toast.success("Your account has been created!")
            route.push('/login')
@@ -25,7 +24,6 @@ const SignupForm = () => {
             setLoading(false)
             toast.error(err.message)
         }
-            
         
     }
 
@@ -34,19 +32,19 @@ const SignupForm = () => {
         return setError(true)
        }
        return setError(false)
-       
     }
+
     if(loading){
         return(
             <Spinner />
         )
     }
     return(
-        <form onSubmit={signupHandler} className={styles.signupForm}>
+        <form data-testid='signupForm' onSubmit={signupHandler} className={styles.signupForm}>
             <input placeholder="Name" name="name" />
             <input placeholder="E-mail" name="email" />
             <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} name="password"/>
-            <input inval onChange={passwordCheck} placeholder="Confirm Password" name="passwordConfirm"/>
+            <input onChange={passwordCheck} placeholder="Confirm Password" name="passwordConfirm"/>
             <MainButton type='submit' content='Create' />
         </form>
     )
