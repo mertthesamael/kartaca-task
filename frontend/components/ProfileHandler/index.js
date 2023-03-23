@@ -43,7 +43,6 @@ const ProfileHandler = ({}) => {
           style={menuState ? { top: 0 } : { top: "-7rem" }}
           className={styles.profileHandler__hidden__menu}
         >
-          <li>Profile</li>
           <li onClick={signOut}>Sign Out</li>
         </ol>
       </div>

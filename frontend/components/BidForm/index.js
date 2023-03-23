@@ -4,18 +4,25 @@ import MainButton from "../Buttons/MainButton";
 import axios from "axios";
 import { useContext } from "react";
 import { UserContext } from "@/store/userContext";
+import { toast } from "react-toastify";
+import Auction from "../../assets/svg/auction-svgrepo-com.svg"
 
 const BidForm = ({ item }) => {
   const { currentUser } = useContext(UserContext);
   const bidHandler = async (e) => {
     e.preventDefault();
-    const data = axios.post("/api/bid", {
-      id: item.id,
-      from: currentUser.name,
-      amount: e.target.amount.value,
-      currentAmount: item.lastBid.amount,
-    });
-    // {id:id,from:"Merto",amount:e.target.amount.value})
+    try{
+      await axios.post("/api/bid", {
+        id: item.id,
+        from: currentUser.name,
+        amount: e.target.amount.value,
+        currentAmount: item.lastBid.amount,
+        endpoint:'/bid'
+      });
+      toast.success(`Your bid is (${e.target.amount.value} TRY) accepted!`)
+    }catch(err){
+      toast.error(err.message)
+    }
   };
 
   return (
@@ -25,7 +32,7 @@ const BidForm = ({ item }) => {
       onSubmit={bidHandler}
     >
       <input placeholder="Your Bid" name="amount" type="number"></input>
-      <MainButton content="Bid" type="submit" />
+      <MainButton icon={<Auction />} content="Bid" type="submit" />
     </form>
   );
 };

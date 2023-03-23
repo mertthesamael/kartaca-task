@@ -1,6 +1,6 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
-var serviceAccount = require("../serviceAccountKey.json");
+var serviceAccount = require("./serviceAccountKey.json");
 
 const express = require("express");
 const cors = require("cors");
@@ -21,6 +21,7 @@ app.get("/", (req, res) => {
   return res.status(200).send("Hello, world!");
 });
 
+//Getting all items from database
 app.get("/items", async (req, res) => {
   const query = db.collection("item");
   let response = [];
@@ -37,7 +38,7 @@ app.get("/items", async (req, res) => {
   return res.status(200).send({ status: "Success", data: response });
 });
 
-//Create => post()
+//Create user
 app.post("/signup", async (req, res) => {
   try {
     const userResponse = await admin.auth().createUser({
@@ -58,7 +59,7 @@ app.post("/signup", async (req, res) => {
   }
 });
 
-//Rout for Bid Sequence
+//Route for Bid Sequence
 app.post("/bid", async (req, res) => {
   const docRef = db.collection("item").doc(req.body.id);
   console.log(req.body);
@@ -85,6 +86,7 @@ app.post("/bid", async (req, res) => {
   }
 });
 
+//Getting spesific item from database
 app.get("/get_spesific/:collection/:id", (req, res) => {
   (async () => {
     try {
@@ -97,5 +99,7 @@ app.get("/get_spesific/:collection/:id", (req, res) => {
     }
   })();
 });
+
+
 //Exports the API to firebase cloud functions
 exports.app = functions.https.onRequest(app);

@@ -1,8 +1,9 @@
 import styles from "./style.module.scss";
-
-const MainButton = ({ content, onClick }) => {
+import Icon from "../../../assets/svg/auction-svgrepo-com.svg"
+const MainButton = ({ icon, content, onClick }) => {
   return (
     <button className={styles.mainButton} onClick={onClick}>
+      {icon}
       {content}
     </button>
   );

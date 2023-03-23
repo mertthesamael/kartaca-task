@@ -14,12 +14,16 @@ const SignupForm = () => {
   const route = useRouter();
   const signupHandler = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    try {
-      await axios.post("/api/signup", {
+    if(error){
+      return toast.error('Password does not match.')
+    }
+      setLoading(true);
+      try {
+        await axios.post("/api/signup", {
         email: e.target.email.value,
         password: password,
         name: e.target.name.value,
+        endpoint:'/signup'
       });
       setLoading(false);
       toast.success("Your account has been created!");
@@ -28,6 +32,7 @@ const SignupForm = () => {
       setLoading(false);
       toast.error(err.message);
     }
+  
   };
 
   const passwordCheck = (e) => {
@@ -55,6 +60,7 @@ const SignupForm = () => {
         name="password"
       />
       <input
+      style={error?{border:'1px solid red'}:{}}
         onChange={passwordCheck}
         placeholder="Confirm Password"
         name="passwordConfirm"

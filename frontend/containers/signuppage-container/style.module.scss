@@ -1,9 +1,9 @@
 .signupPageContainer{
     padding: 5rem;
-    width: 300px;
+    width: 25vw;
+    height:55vh;
     border: 1px solid grey;
     border-radius: 15px;
-    height: 300px;
     background: rgba( 255, 255, 255, 0.05 );
     box-shadow: 0 8px 32px 0 rgba(219, 219, 226, 0.219);
     backdrop-filter: blur( 20px );
@@ -13,4 +13,13 @@
 
     display: grid;
     place-items: center;
+}
+
+
+@media screen and (max-width:720px) {
+    .signupPageContainer{
+        width: 70vw;
+        height: 80vh;
+    }
+    
 }

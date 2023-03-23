@@ -3,4 +3,12 @@
     display: grid;
     place-items: center;
     overflow: auto;
+
+}
+
+@media screen and (max-width:720px){
+ 
+    .home{
+        padding: 8rem 0;
+    }
 }
