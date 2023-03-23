@@ -1,11 +1,12 @@
-.profileHandler{
+.profileHandler {
     width: max-content;
     height: 9rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    &__display{
+
+    &__display {
         width: 100%;
         height: 70%;
         color: white;
@@ -17,24 +18,28 @@
         border-radius: 10px;
         transition: all 0.5s ease;
         cursor: pointer;
-        &:hover{
+
+        &:hover {
             background-color: rgba(209, 209, 209, 0.295);
         }
-        &__status{
+
+        &__status {
             height: 15px;
             width: 15px;
             background-color: #00FF00;
             border-radius: 50px;
         }
     }
-    &__hidden{
+
+    &__hidden {
         width: 100%;
         height: 100%;
         overflow: hidden;
         padding: 1rem;
         position: relative;
         box-sizing: content-box;
-        &__menu{
+
+        &__menu {
             height: 100%;
             width: 100%;
             color: white;
@@ -48,11 +53,13 @@
             opacity: 1;
             position: relative;
             top: -6rem;
-            & li{
+
+            & li {
                 margin-left: 1rem;
                 color: grey;
                 cursor: pointer;
-                &:hover{
+
+                &:hover {
                     color: white;
                 }
             }

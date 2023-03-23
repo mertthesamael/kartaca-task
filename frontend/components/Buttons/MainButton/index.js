@@ -1,12 +1,11 @@
-import styles from "./style.module.scss"
+import styles from "./style.module.scss";
 
+const MainButton = ({ content, onClick }) => {
+  return (
+    <button className={styles.mainButton} onClick={onClick}>
+      {content}
+    </button>
+  );
+};
 
-const MainButton = ({content,onClick}) => {
-
-
-    return(
-        <button className={styles.mainButton} onClick={onClick}>{content}</button>
-    )
-}
-
-export default MainButton
+export default MainButton;
