@@ -3,19 +3,18 @@ import { useContext, useState } from "react";
 import styles from "./style.module.scss";
 import { logout } from "@/config/firebase";
 import { UserContext } from "@/store/userContext";
-import { useRouter } from "next/navigation";
+
 
 const ProfileHandler = ({}) => {
   const [menuState, setMenuState] = useState(false);
-  const { currentUser } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
+  const { currentUser } = useContext(UserContext);
+
   const signOut = async() => {
     setLoading(true);
     try {
       await logout();
       setMenuState(false)
-      router.push("/");
       setLoading(false);
     } catch (err) {
       console.log(err);

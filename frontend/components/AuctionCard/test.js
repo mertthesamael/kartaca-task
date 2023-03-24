@@ -1,6 +1,6 @@
 const { render, screen } = require("@testing-library/react");
 import { UserContextWrapper } from "@/store/userContext";
-import {AuctionCard}from "./index";
+import { AuctionCard }from "./index";
 
 jest.mock("next/navigation", () => {
     return {

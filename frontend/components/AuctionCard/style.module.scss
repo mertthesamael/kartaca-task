@@ -135,7 +135,7 @@
                     width: 100%;
                     color: white;
                     & h1 {
-                        text-decoration: underline;
+                        font-weight: bolder;
                     }
                 }
 
@@ -171,7 +171,7 @@
                     width: 100%;
                     gap:0.5rem;
                     justify-content: center;
-                    align-items: flex-end;
+                    align-items: center;
                     height: max-content;
                 }
             }
