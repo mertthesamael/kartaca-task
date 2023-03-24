@@ -10,7 +10,10 @@ const LoginPageContainer = () => {
     return(
         <div className={styles.loginPageContainer}>
             <LoginForm />
-            <Link style={{color:'white', textDecoration:'none'}} href='/signup'>Sign Up!</Link>
+            <div style={{textAlign:'center',}}>
+            <p style={{color:'grey',marginBottom:'1rem'}}>Don't have an account?</p>
+            <Link style={{color:'white', textDecoration:'none'}} href='/signup'>Signup</Link>
+            </div>
         </div>
     )
 }

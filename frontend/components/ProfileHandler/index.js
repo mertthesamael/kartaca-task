@@ -10,11 +10,11 @@ const ProfileHandler = ({}) => {
   const { currentUser } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const signOut = () => {
+  const signOut = async() => {
     setLoading(true);
     try {
-      logout();
-      router.push("/login");
+      await logout();
+      router.push("/");
       setLoading(false);
     } catch (err) {
       console.log(err);

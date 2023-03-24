@@ -11,6 +11,9 @@ const BidForm = ({ item }) => {
   const { currentUser } = useContext(UserContext);
   const bidHandler = async (e) => {
     e.preventDefault();
+    if(item.lastBid.amount>e.target.amount.value){
+      return toast.error("Bid amount must be greater then recent one.")
+    }
     try{
       await axios.post("/api/bid", {
         id: item.id,

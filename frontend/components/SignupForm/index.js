@@ -51,19 +51,22 @@ const SignupForm = () => {
       onSubmit={signupHandler}
       className={styles.signupForm}
     >
-      <input placeholder="Name" name="name" />
-      <input placeholder="E-mail" name="email" />
+      <input placeholder="Name" required name="name" />
+      <input placeholder="E-mail" required name="email" />
       <input
         type="password"
+        required
         placeholder="Password"
         onChange={(e) => setPassword(e.target.value)}
         name="password"
       />
       <input
-      style={error?{border:'1px solid red'}:{}}
+      style={error?{border:'1px solid red',outline:'none'}:{}}
         onChange={passwordCheck}
         placeholder="Confirm Password"
         name="passwordConfirm"
+        type="password"
+        required
       />
       <MainButton type="submit" content="Create" />
     </form>
