@@ -14,6 +14,7 @@ const ProfileHandler = ({}) => {
     setLoading(true);
     try {
       await logout();
+      setMenuState(false)
       router.push("/");
       setLoading(false);
     } catch (err) {
@@ -24,8 +25,6 @@ const ProfileHandler = ({}) => {
   return (
     <div data-testid="profileHandler" className={styles.profileHandler}>
       <div
-        tabIndex="0"
-        onBlur={() => setMenuState(false)}
         onClick={() => setMenuState(!menuState)}
         className={styles.profileHandler__display}
       >
