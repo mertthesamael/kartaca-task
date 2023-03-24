@@ -4,18 +4,24 @@ import BidForm from "../BidForm";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-export const AuctionCard = ({ data }) => {
+export const AuctionCard = ({ data,mock }) => {
   const router = useRouter();
   const [isActive, setIsActive] = useState(false);
-  useEffect(() => {
-      if(Date.now() < data.openTime?.toDate()){
-          setIsActive(true)
-      }
-  },[])
+
   let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
-  const date = data.openTime.toDate().toLocaleDateString("en-US", options)
+  useEffect(() => {
+    if(mock){
+      setIsActive(false)
+    }else{
+
+      if(Date.now() < data?.openTime?.toDate()){
+        setIsActive(true)
+      }
+    }
+  },[])
+  
   return (
-    <div data-testid="auctionCard" className={styles.auctionCard}>
+    <div data-testid="auctionCard" className={styles.auctionCard} style={isActive?{color:'red'}:{boxShadow:'0 0 20px 5px rgb(0, 255, 98)'}}>
       <div className={styles.auctionCard__wrapper}>
         <Image
           src={data.img}
@@ -26,7 +32,7 @@ export const AuctionCard = ({ data }) => {
         />
         <div className={styles.auctionCard__wrapper__header} style={!isActive?{height:"100%"}:{}}>
           <div className={styles.auctionCard__wrapper__header__title}>
-            <h1 onClick={() => router.push(`/${data.id}`)}>{data.name}</h1>
+            <h1 onClick={() => router.push(mock?"/login":`/${data.id}`)}>{data.name}</h1>
           </div>
         </div>
         <div className={styles.auctionCard__wrapper__footer}>
@@ -79,7 +85,7 @@ export const AuctionCard = ({ data }) => {
                 }
               />
               <div>{isActive ? <h3>Live</h3> :<h3 style={{color:'rgb(0, 255, 98)',width:'max-content'}}>Auction Closed</h3>}</div>
-              {isActive&&<div>{date}</div>}
+              {isActive&&<div>{data?.openTime?.toDate().toLocaleDateString("en-US", options)}</div>}
             </div>
           </div>
         </div>

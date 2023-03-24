@@ -9,7 +9,7 @@ import { ItemContext } from "@/store/itemContext";
 
 const HomePageContainer = () => {
     const {items,loading} = useContext(ItemContext)
-    
+    console.log(items)
     if(loading){
         return(
             <Spinner/>
@@ -21,7 +21,7 @@ const HomePageContainer = () => {
             <div className={styles.homePageContainer__profileHandler}>
             <ProfileHandler />
             </div>
-           {items?.map(item => <AuctionCard key={item.name} data={item} id={item.id} image={item.img} status={item.openTime} details={item.lastBid} name={item.name}/>)}
+           {items?.map(item => <AuctionCard key={item.name} data={item} />)}
         </div>
     )
 }

@@ -34,12 +34,22 @@
             line-height: 2.5rem;
         }
     }  
-    &__img{
+    &__demo{
         display: grid;
         place-items: center;
         height: 100%;
         width: 100%;
         position: relative;
+
+        &__shadow{
+            position: absolute;
+            top: 2rem;
+            left: 1rem;
+            width: 92%;
+            height: 92%;
+
+           
+        }
     }
 }
 
@@ -50,7 +60,7 @@
         flex-direction: column;
         height: 100%;
         zoom: 0.8;
-         &__img{
+         &__demo{
              display: none!important;
          }
     }

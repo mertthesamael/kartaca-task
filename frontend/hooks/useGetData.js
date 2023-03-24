@@ -9,6 +9,7 @@ export const useGetData = (collection, id) => {
         axios.post(`/api/getdata`, {
           collection: collection,
           id: id,
+          endpoint:'/get_spesific'
         }),
       {
         select: (data) => data.data.data,

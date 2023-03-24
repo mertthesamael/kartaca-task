@@ -18,7 +18,7 @@ const Detail = ({ data }) => {
           fill
           style={{ objectFit: "cover" }}
           alt="Item Image"
-        />
+          />
       </div>
       <div className={styles.detail__footer}>
         <div className={styles.detail__footer__info}>
@@ -26,22 +26,25 @@ const Detail = ({ data }) => {
           <p>{data?.description}</p>
         </div>
         <div className={styles.detail__footer__bid}>
-          <h1>Bid Status - {isActive?'Active':'Closed'}</h1>
+          <div className={styles.detail__footer__bid__status}>
+          <h1>Bid Status - <span style={isActive?{}:{color:'rgb(0, 255, 98)'}}>{isActive?'Active':'Completed'}</span></h1>
+          <div className={styles.detail__footer__bid__status__button} style={isActive?{backgroundColor:'red'}:{backgroundColor:'rgb(0, 255, 98)'}}/>
+          </div>
           {isActive?
 
             <div className={styles.detail__footer__bid__bidform}>
             <div>
-              <p>Last Bid: {data?.lastBid.amount}</p>
-              <p>From: {data?.lastBid.from}</p>
+              <p style={{fontWeight:'bolder', fontSize:'1.3rem'}}>Last Bid: <span style={{fontWeight:'lighter'}}>{data?.lastBid.amount} TRY</span></p>
+              <p style={{fontWeight:'bolder', fontSize:'1.3rem'}}>From: <span style={{fontWeight:'lighter'}}>{data?.lastBid.from}</span></p>
             </div>
-            <div>
+            <div style={{width:'50%'}}>
               <BidForm item={data} id={data?.id} />
             </div>
           </div>
           :
           <div style={{display:'flex', flexDirection:'column',gap:'2rem'}}>
-            <h1>Winner: <span style={{color:'rgb(0, 255, 98)'}}>{data.lastBid.from}</span></h1>
-            <h1>With the amount of: <span style={{color:'rgb(0, 255, 98)'}}>{data.lastBid.amount}TRY</span></h1>
+            <h1 style={{fontWeight:'bolder', fontSize:'1.3rem'}}>Winner: <span style={{color:'rgb(0, 255, 98)', fontWeight:'lighter'}}>{data.lastBid.from}</span></h1>
+            <h1 style={{fontWeight:'bolder', fontSize:'1.3rem'}}>With the amount of: <span style={{color:'rgb(0, 255, 98)', fontWeight:'lighter'}}>{data.lastBid.amount}TRY</span></h1>
           </div>
           }
         </div>

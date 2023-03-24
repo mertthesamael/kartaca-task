@@ -1,11 +1,29 @@
 import MainButton from "@/components/Buttons/MainButton"
 import styles from "./style.module.scss"
-import Image from "next/image"
+import Tilt from "react-parallax-tilt"
 import Link from "next/link"
+import { useGetData } from "@/hooks/useGetData"
+import { AuctionCard } from "@/components/AuctionCard"
+import { useState } from "react"
+import Spinner from "@/components/Spinner"
 
 
 const WelcomerContainer = () => {
+    const [shadowY, setShadowY] = useState("")
+    const [shadowX, setShadowX] = useState("")
+    const {data:mockData, isLoading}= useGetData("item","uo1kizpSdi4jpYuKp4oj")
+    console.log(mockData)
 
+    const offsetHandler = (e)=> {
+        setShadowY(e.tiltAngleYPercentage<0?
+            Math.abs(e.tiltAngleYPercentage)
+            *0.2:-Math.abs(e.tiltAngleYPercentage)*0.2)
+    
+            setShadowX(e.tiltAngleXPercentage<0?
+                -Math.abs(e.tiltAngleXPercentage)
+                *0.2:Math.abs(e.tiltAngleXPercentage)*0.2)
+    
+    }
     return(
         <div className={styles.welcomerContainer}>
             <div className={styles.welcomerContainer__cta}>
@@ -27,8 +45,15 @@ const WelcomerContainer = () => {
                     </Link>
                 </div>
             </div>
-            <div className={styles.welcomerContainer__img}>
-                <Image draggable='false' src={require("../../assets/png/demo.png")}  style={{ borderRadius:'15px',objectFit:'contain',transform:'scale(0.9)'}} alt="Demo Image"/>
+            <div className={styles.welcomerContainer__demo}>
+                {isLoading?<Spinner />:
+                <Tilt glareEnable={false} onMove={offsetHandler} scale={1.1}>
+                <div style={{
+                    boxShadow:`${shadowY}px ${(shadowX)}px 20px 15px rgb(0, 255, 98)`
+                }} className={styles.welcomerContainer__demo__shadow}/>
+                <AuctionCard mock data={mockData}></AuctionCard>
+                </Tilt>
+                }
             </div>
         </div>
     )

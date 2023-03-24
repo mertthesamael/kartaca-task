@@ -17,3 +17,12 @@
         }
     }
 }
+
+
+@media screen and (max-width:'720px') {
+    .item{
+        &__goBack{
+            display: none;
+        }
+    }
+}

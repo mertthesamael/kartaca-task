@@ -2,16 +2,22 @@
 import styles from "./style.module.scss";
 import MainButton from "../Buttons/MainButton";
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "@/store/userContext";
 import { toast } from "react-toastify";
 import Auction from "../../assets/svg/auction-svgrepo-com.svg"
+import Spinner from "../Spinner";
 
 const BidForm = ({ item }) => {
   const { currentUser } = useContext(UserContext);
+  const [loading, setLoading] = useState(false)
+  const [error,setError] = useState(false)
   const bidHandler = async (e) => {
     e.preventDefault();
+    setLoading(true)
     if(item.lastBid.amount>=e.target.amount.value){
+      setLoading(false)
+      setError(true)
       return toast.error("Bid amount must be greater then recent one.")
     }
     try{
@@ -22,9 +28,13 @@ const BidForm = ({ item }) => {
         currentAmount: item.lastBid.amount,
         endpoint:'/bid'
       });
+      setLoading(false)
+      setError(false)
       toast.success(`Your bid is (${e.target.amount.value} TRY) accepted!`)
     }catch(err){
       toast.error(err.message)
+      setLoading(false)
+
     }
   };
 
@@ -34,8 +44,8 @@ const BidForm = ({ item }) => {
       className={styles.bidForm}
       onSubmit={bidHandler}
     >
-      <input placeholder="Your Bid" name="amount" type="number"></input>
-      <MainButton icon={<Auction />} content="Bid" type="submit" />
+      <input placeholder="Your Bid" name="amount" type="number" style={error?{border:'1px solid red'}:{}}/>
+      {loading?<Spinner />:<MainButton icon={<Auction />} content="Bid" type="submit" />}
     </form>
   );
 };
