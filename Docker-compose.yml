@@ -1,0 +1,9 @@
+version: '3'
+services:
+    frontend:
+      build: ./frontend
+      env_file:
+        - ./frontend/.env
+      image: docker-kartaca-auction-app
+      ports:
+        - 3000:3000

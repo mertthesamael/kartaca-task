@@ -1,10 +1,10 @@
 FROM node:16.17
 
-WORKDIR /usr/src/app
+WORKDIR /
 
 COPY . .
 
-RUN npm install --production
+RUN npm install
 
 RUN npm run build
 
