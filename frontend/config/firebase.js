@@ -1,11 +1,10 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
+
+//Firebase configuration
+//Since all the security rules lives on firebase, it's safe to share API key for database
 const firebaseConfig = {
   apiKey: "AIzaSyBX_6Uc9sDpS5FVaQGifuBumVMpLilIQbw",
   authDomain: "kartaca-auction.firebaseapp.com",
@@ -19,11 +18,14 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
+
+//Login Function
 const login = async (email, password) => {
   const { user } = await signInWithEmailAndPassword(auth, email, password);
   return user;
 };
 
+//Logout Function
 const logout = async () => {
   try {
     await signOut(auth);

@@ -1,24 +1,25 @@
 import reducer from "./userReducer";
 import { createContext, useEffect, useReducer, useState } from "react";
 import { useGetData } from "@/hooks/useGetData";
-import { auth, logout } from "@/config/firebase";
+import { auth } from "@/config/firebase";
 
 const UserContext = createContext();
 
 export const UserContextWrapper = ({ children }) => {
+  //User reducer settings
   const [user, dispatch] = useReducer(reducer, {
     status: false,
   });
-  const [loading, setLoading] = useState(true)
+
+  //Fetching userdata with custom hook
   const { data: userData } = useGetData("user", user?.email);
+  const [loading, setLoading] = useState(true);
 
-
-
-  const checkLogin = async() => {
-    setLoading(true)
+  //Checking if app contains user token
+  const checkLogin = async () => {
+    setLoading(true);
     auth.onAuthStateChanged(function (user) {
       if (!user) {
-        console.log("User is not logged in");
         dispatch({
           type: "UPDATE",
           name: false,
@@ -26,8 +27,6 @@ export const UserContextWrapper = ({ children }) => {
           status: false,
         });
       } else {
-        
-        console.log(user);
         dispatch({
           type: "UPDATE",
           name: user.displayName,
@@ -36,17 +35,15 @@ export const UserContextWrapper = ({ children }) => {
         });
       }
     });
-    setLoading(false)
+    setLoading(false);
   };
   useEffect(() => {
-
     checkLogin();
-
   }, [userData]);
 
   const data = {
     currentUser: user,
-    loading:loading,
+    loading: loading,
   };
   return <UserContext.Provider value={data}>{children}</UserContext.Provider>;
 };

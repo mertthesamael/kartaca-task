@@ -5,36 +5,41 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { UserContext } from "@/store/userContext";
 import { toast } from "react-toastify";
-import Auction from "../../assets/svg/auction-svgrepo-com.svg"
+import Auction from "../../assets/svg/auction-svgrepo-com.svg";
 import Spinner from "../Spinner";
 
 const BidForm = ({ item }) => {
+
+  //Getting user info from context
   const { currentUser } = useContext(UserContext);
-  const [loading, setLoading] = useState(false)
-  const [error,setError] = useState(false)
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+
+  //Bid sequence
   const bidHandler = async (e) => {
     e.preventDefault();
-    setLoading(true)
-    if(item.lastBid.amount>=e.target.amount.value){
-      setLoading(false)
-      setError(true)
-      return toast.error("Bid amount must be greater then recent one.")
+    setLoading(true);
+    //Checking that if value is valid. It's also done from backend, this one is for the styling.
+    if (item.lastBid.amount >= e.target.amount.value) {
+      setLoading(false);
+      setError(true);
+      return toast.error("Bid amount must be greater then recent one.");
     }
-    try{
+    try {
       await axios.post("/api/bid", {
         id: item.id,
         from: currentUser.name,
         amount: e.target.amount.value,
         currentAmount: item.lastBid.amount,
-        endpoint:'/bid'
+        endpoint: "/bid",
       });
-      setLoading(false)
-      setError(false)
-      toast.success(`Your bid is (${e.target.amount.value} TRY) accepted!`)
-    }catch(err){
-      toast.error(err.message)
-      setLoading(false)
-
+      setLoading(false);
+      setError(false);
+      toast.success(`Your bid is (${e.target.amount.value} TRY) accepted!`);
+    } catch (err) {
+      toast.error(err.message);
+      setLoading(false);
     }
   };
 
@@ -44,8 +49,17 @@ const BidForm = ({ item }) => {
       className={styles.bidForm}
       onSubmit={bidHandler}
     >
-      <input placeholder="Your Bid" name="amount" type="number" style={error?{border:'1px solid red'}:{}}/>
-      {loading?<Spinner />:<MainButton icon={<Auction />} content="Bid" type="submit" />}
+      <input
+        placeholder="Your Bid"
+        name="amount"
+        type="number"
+        style={error ? { border: "1px solid red" } : {}}
+      />
+      {loading ? (
+        <Spinner />
+      ) : (
+        <MainButton icon={<Auction />} content="Bid" type="submit" />
+      )}
     </form>
   );
 };

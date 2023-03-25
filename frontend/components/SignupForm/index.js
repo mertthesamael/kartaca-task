@@ -8,22 +8,26 @@ import { useRouter } from "next/navigation";
 import Spinner from "../Spinner";
 
 const SignupForm = () => {
+  const route = useRouter();
+
+  //Password checker states
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const route = useRouter();
+
+  //Main signup function
   const signupHandler = async (e) => {
     e.preventDefault();
-    if(error){
-      return toast.error('Password does not match.')
+    if (error) {
+      return toast.error("Password does not match.");
     }
-      setLoading(true);
-      try {
-        await axios.post("/api/signup", {
+    setLoading(true);
+    try {
+      await axios.post("/api/signup", {
         email: e.target.email.value,
         password: password,
         name: e.target.name.value,
-        endpoint:'/signup'
+        endpoint: "/signup",
       });
       setLoading(false);
       toast.success("Your account has been created!");
@@ -32,9 +36,9 @@ const SignupForm = () => {
       setLoading(false);
       toast.error(err.message);
     }
-  
   };
 
+  //Checking if password inputs are equal
   const passwordCheck = (e) => {
     if (password !== e.target.value) {
       return setError(true);
@@ -61,7 +65,7 @@ const SignupForm = () => {
         name="password"
       />
       <input
-      style={error?{border:'1px solid red',outline:'none'}:{}}
+        style={error ? { border: "1px solid red", outline: "none" } : {}}
         onChange={passwordCheck}
         placeholder="Confirm Password"
         name="passwordConfirm"

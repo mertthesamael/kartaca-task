@@ -8,12 +8,11 @@ const ItemContext = createContext();
 export const ItemContextWrapper = ({ children }) => {
   //Getting current user from UserContext, so whenever it updates, i can fetch Real-Time data.
   const { currentUser } = useContext(UserContext);
-
   const [items, setItems] = useState();
   const [loading, setLoading] = useState(true);
 
+  //Realtime Data Fetching Sequence
   useEffect(() => {
-    //Realtime Data Fetching Sequence
     setLoading(true);
     const notesCollection = query(collection(db, "item"));
     onSnapshot(notesCollection, (snapshot) => {

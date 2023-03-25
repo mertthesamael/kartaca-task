@@ -27,7 +27,6 @@ app.get("/items", async (req, res) => {
   let response = [];
   await query.get().then((data) => {
     let docs = data.docs;
-
     docs.map((doc) => {
       const selectedItem = {
         ...doc.data(),
@@ -62,7 +61,6 @@ app.post("/signup", async (req, res) => {
 //Route for Bid Sequence
 app.post("/bid", async (req, res) => {
   const docRef = db.collection("item").doc(req.body.id);
-  console.log(req.body);
   const currentAmount = req.body.currentAmount;
   if (currentAmount < req.body.amount) {
     try {
@@ -77,12 +75,10 @@ app.post("/bid", async (req, res) => {
       console.log(err);
     }
   } else {
-    return res
-      .status(200)
-      .send({
-        status: "Error",
-        msg: "Bid amount must be greater then current.",
-      });
+    return res.status(200).send({
+      status: "Error",
+      msg: "Bid amount must be greater then current.",
+    });
   }
 });
 
@@ -99,7 +95,6 @@ app.get("/get_spesific/:collection/:id", (req, res) => {
     }
   })();
 });
-
 
 //Exports the API to firebase cloud functions
 exports.app = functions.https.onRequest(app);

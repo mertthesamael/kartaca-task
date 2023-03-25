@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { useContext } from "react";
 import { ItemContext } from "@/store/itemContext";
 import Spinner from "@/components/Spinner";
-import BackIcon from "../../assets/svg/arrow-back-svgrepo-com.svg"
+import BackIcon from "../../assets/svg/arrow-back-svgrepo-com.svg";
 import Link from "next/link";
 const Item = ({ params }) => {
   const { items, loading } = useContext(ItemContext);
@@ -23,7 +23,7 @@ const Item = ({ params }) => {
   }
   return (
     <main className={styles.item}>
-      <Link href='/' className={styles.item__goBack}>
+      <Link href="/" className={styles.item__goBack}>
         <BackIcon />
       </Link>
       <ItemPageContainer item={itemData} />

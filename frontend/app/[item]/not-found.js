@@ -22,8 +22,8 @@ const NotFound = () => {
           position: "relative",
           color: "white",
           textAlign: "center",
-          placeItems:'center',
-          gap:'2rem'
+          placeItems: "center",
+          gap: "2rem",
         }}
       >
         <h2>4 0 4</h2>

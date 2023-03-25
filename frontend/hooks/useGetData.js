@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
+//Custom hook for fetching spesific data from backend
 export const useGetData = (collection, id) => {
   try {
     return useQuery(
@@ -9,7 +10,7 @@ export const useGetData = (collection, id) => {
         axios.post(`/api/getdata`, {
           collection: collection,
           id: id,
-          endpoint:'/get_spesific'
+          endpoint: "/get_spesific",
         }),
       {
         select: (data) => data.data.data,

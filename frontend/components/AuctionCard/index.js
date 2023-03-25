@@ -4,10 +4,12 @@ import BidForm from "../BidForm";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
+
+//I used mock prop for non-logged users. If this component has mock enabled, it means that the coming data is static.
 export const AuctionCard = ({ data,mock }) => {
   const router = useRouter();
   const [isActive, setIsActive] = useState(false);
-
+  //Date format options
   let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
   useEffect(() => {
     if(mock){
@@ -67,7 +69,7 @@ export const AuctionCard = ({ data,mock }) => {
                 </div>
                 <div style={{textAlign:'center'}}>
                 <h1 style={{color:'white'}}>With the amount of</h1>
-                <h1 style={{color:'rgb(0, 255, 98)', fontSize:'2rem', marginTop:'1rem'}}>{data.lastBid.amount + 'TRY'}</h1>
+                <h1 style={{color:'rgb(0, 255, 98)', fontSize:'2rem', marginTop:'1rem'}}>{data.lastBid.amount + ' TRY'}</h1>
                 </div>
               </div>
               }
@@ -84,7 +86,7 @@ export const AuctionCard = ({ data,mock }) => {
                   styles.auctionCard__wrapper__footer__bottom__closedButton
                 }
               />
-              <div>{isActive ? <h3>Live</h3> :<h3 style={{color:'rgb(0, 255, 98)',width:'max-content'}}>Auction Closed</h3>}</div>
+              <div>{isActive ? <h3>Live</h3> :<h3 style={{color:'rgb(0, 255, 98)',width:'max-content'}}>Auction Completed</h3>}</div>
               {isActive&&<div>{data?.openTime?.toDate().toLocaleDateString("en-US", options)}</div>}
             </div>
           </div>
