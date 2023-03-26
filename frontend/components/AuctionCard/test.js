@@ -13,16 +13,16 @@ jest.mock("next/navigation", () => {
   }); 
   
 describe("AuctionCard", () => {
+  const data={
+      lastBid:{
+          amount:2,
+          from:"Merto"
+      },
+      name:"Lorem Ipsum",
+      id:"321321",
+      img:""
+  } 
   it("should render successfuly", () => {
-    const data={
-        lastBid:{
-            amount:2,
-            from:"Merto"
-        },
-        name:"Lorem Ipsum",
-        id:"321321",
-        img:""
-    } 
     render(
         <UserContextWrapper>
             <AuctionCard data={data}/>
@@ -31,5 +31,19 @@ describe("AuctionCard", () => {
     let element = screen.getByTestId("auctionCard");
     expect(element).toBeInTheDocument();
   });
+
+  it("should render mock data info", () => {
+
+    render(
+      <UserContextWrapper>
+        <AuctionCard data={data}/>
+      </UserContextWrapper>
+    )
+
+    let element = screen.getByTestId('itemName')
+    expect(element).toHaveTextContent(data.name)
+
+  })
+
 
 });

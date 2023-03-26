@@ -6,9 +6,9 @@ import { active, success } from "@/style/variables";
 
 //Using mock prop for testing
 const Detail = ({ mock, data }) => {
-  const [isActive, setIsActive] = useState(false);
+const [isActive, setIsActive] = useState(false);
 
-  //Setting status of auction. It's done from backend also, this one for styling.
+//Setting status of auction. It's done from backend also, this one for styling.
 useEffect(() => {
   if (!mock && Date.now() < data.openTime?.toDate()) {
     setIsActive(true);
@@ -70,7 +70,7 @@ useEffect(() => {
             <div
               style={{ display: "flex", flexDirection: "column", gap: "2rem" }}
             >
-              <h1 style={{ fontWeight: "bolder", fontSize: "1.3rem" }}>
+              <h1 data-testid='userName' style={{ fontWeight: "bolder", fontSize: "1.3rem" }}>
                 Winner:{" "}
                 <span
                   style={{ color: success, fontWeight: "lighter" }}

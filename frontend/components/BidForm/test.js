@@ -2,7 +2,6 @@ const { render, screen } = require("@testing-library/react");
 import { UserContextWrapper } from "@/store/userContext";
 import BidForm from "./index";
 import userEvent from "@testing-library/user-event";
-import { ItemContextWrapper } from "@/store/itemContext";
 
 describe("BidForm", () => {
 
@@ -19,13 +18,24 @@ describe("BidForm", () => {
 
     render(
       <UserContextWrapper>
-        <ItemContextWrapper>
-        <BidForm item={mockData}/>
-        </ItemContextWrapper>
+        <BidForm mock item={mockData}/>
       </UserContextWrapper>
     );
     let element = screen.getByTestId("bidForm");
     expect(element).toBeInTheDocument();
   });
 
+  it('should update input values', async() => {
+
+    render(
+    <UserContextWrapper>
+      <BidForm mock item={mockData}/>
+    </UserContextWrapper>)
+    const bidInput = screen.getByPlaceholderText(/Your Bid/i)
+
+
+    await userEvent.type(bidInput, "23")
+    expect(bidInput).toHaveValue(23)
+
+})
 });

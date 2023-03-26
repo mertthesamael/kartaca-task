@@ -11,7 +11,7 @@ const UpperContainer = ({data,isActive,mock}) => {
         style={!isActive ? { height: "100%" } : {}}
       >
         <div className={styles.upperContainer__title}>
-          <h1 onClick={() => router.push(mock ? "/login" : `/${data.id}`)}>
+          <h1 data-testid='itemName' onClick={() => router.push(mock ? "/login" : `/${data.id}`)}>
             {data.name}
           </h1>
         </div>

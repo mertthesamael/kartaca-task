@@ -30,7 +30,20 @@ describe("Detail", () => {
 
     let element = screen.getByTestId("detail");
     expect(element).toBeInTheDocument();
+     
   });
 
+  it("should render mock data info", () => {
+
+    render(
+      <UserContextWrapper>
+        <Detail mock data={mockData}></Detail>
+      </UserContextWrapper>
+    )
+
+    let element = screen.getByTestId('userName')
+    expect(element).toHaveTextContent(mockData.lastBid.from)
+
+  })
 
 });

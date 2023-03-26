@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import Auction from "../../assets/svg/auction-svgrepo-com.svg";
 import Spinner from "../Spinner";
 
-const BidForm = ({ item }) => {
+const BidForm = ({ mock, item }) => {
 
   //Getting user info from context
   const { currentUser } = useContext(UserContext);
@@ -58,7 +58,7 @@ const BidForm = ({ item }) => {
       {loading ? (
         <Spinner />
       ) : (
-        <MainButton icon={<Auction />} content="Bid" type="submit" />
+        <MainButton icon={!mock&&<Auction />} content="Bid" type="submit" />
       )}
     </form>
   );
