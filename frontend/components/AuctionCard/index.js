@@ -28,7 +28,7 @@ export const AuctionCard = ({ data, mock }) => {
         isActive ? { color: "red" } : { boxShadow: `0 0 20px 5px ${success}` }
       }
     >
-     <AuctionCardContainer isActive={isActive} data={data}/>
+     <AuctionCardContainer mock={mock} isActive={isActive} data={data}/>
     </div>
   );
 };

@@ -3,7 +3,7 @@ import styles from "./style.module.scss"
 const { default: BottomContainer } = require("./BottomContainer");
 const { default: UpperContainer } = require("./UpperContainer");
 
-const AuctionCardContainer = ({ isActive ,data }) => {
+const AuctionCardContainer = ({mock, isActive ,data }) => {
 
   return (
     <div className={styles.auctionCardContainer}>
@@ -14,7 +14,7 @@ const AuctionCardContainer = ({ isActive ,data }) => {
         alt="Auction Item"
         sizes="(max-width: 100%) 100%, (max-height: 100%), 100%"
       />
-      <UpperContainer isActive={isActive}  data={data}/>
+      <UpperContainer mock={mock} isActive={isActive}  data={data}/>
       <BottomContainer isActive={isActive} data={data}/>
     </div>
   );
