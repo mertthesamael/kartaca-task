@@ -9,11 +9,11 @@ const Detail = ({ mock, data }) => {
   const [isActive, setIsActive] = useState(false);
 
   //Setting status of auction. It's done from backend also, this one for styling.
-  useEffect(() => {
-    if (!mock && Date.now() < data.openTime?.toDate()) {
-      setIsActive(true);
-    }
-  }, []);
+useEffect(() => {
+  if (!mock && Date.now() < data.openTime?.toDate()) {
+    setIsActive(true);
+  }
+}, []);
 
 
   return (

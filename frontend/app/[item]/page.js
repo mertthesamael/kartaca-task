@@ -7,6 +7,7 @@ import { ItemContext } from "@/store/itemContext";
 import Spinner from "@/components/Spinner";
 import BackIcon from "../../assets/svg/arrow-back-svgrepo-com.svg";
 import Link from "next/link";
+
 const Item = ({ params }) => {
   const { items, loading } = useContext(ItemContext);
   const itemData = items?.filter(
@@ -14,7 +15,7 @@ const Item = ({ params }) => {
   );
 
   if (loading) {
-    return <Spinner></Spinner>;
+    return <Spinner/>;
   }
 
   //If there is no item with given ID, return 404 page.

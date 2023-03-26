@@ -11,6 +11,7 @@ jest.mock("next/navigation", () => {
       },
     };
   }); 
+  
 describe("AuctionCard", () => {
   it("should render successfuly", () => {
     const data={

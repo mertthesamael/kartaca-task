@@ -1,0 +1,37 @@
+@use '../../../../style/animations.scss' as *;
+
+.status {
+    display: flex;
+    height: 100%;
+    color: rgb(0, 191, 255);
+    font-weight: bolder;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 1rem;
+
+    &__liveButton {
+        width: 20px;
+        height: 20px;
+        border-radius: 50px;
+        background-color: rgb(0, 191, 255);
+        transition: all 0.5s ease;
+        animation: breathe 1.5s infinite;
+    }
+
+    &__closedButton {
+        width: 20px;
+        height: 20px;
+        border-radius: 50px;
+        background-color: rgb(0, 255, 98);
+        transition: all 0.5s ease;
+    }
+
+    &__status {
+        display: flex;
+        width: 100%;
+        gap: 0.5rem;
+        justify-content: center;
+        align-items: center;
+        height: max-content;
+    }
+}
