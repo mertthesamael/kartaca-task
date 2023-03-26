@@ -2,6 +2,7 @@ import Image from "next/image";
 import styles from "./style.module.scss";
 import BidForm from "../BidForm";
 import { useEffect, useState } from "react";
+import { active, success } from "@/style/variables";
 
 //Using mock prop for testing
 const Detail = ({ mock, data }) => {
@@ -19,11 +20,6 @@ const Detail = ({ mock, data }) => {
     <div
       data-testid="detail"
       className={styles.detail}
-      style={
-        !isActive
-          ? { boxShadow: "0 0 10px 1px rgb(0, 255, 98)" }
-          : { boxShadow: "0 0 10px 1px rgb(0, 191, 255)" }
-      }
     >
       <div className={styles.detail__header}>
         <Image
@@ -40,18 +36,15 @@ const Detail = ({ mock, data }) => {
         </div>
         <div className={styles.detail__footer__bid}>
           <div className={styles.detail__footer__bid__status}>
-            <h1>
-              Bid Status{" "}
-              <span
+              <h1
                 style={
                   isActive
-                    ? { color: "rgb(0, 191, 255)" }
-                    : { color: "rgb(0, 255, 98)" }
+                    ? { color: active}
+                    : { color: success}
                 }
               >
                 {isActive ? "Active" : "Completed"}
-              </span>
-            </h1>
+              </h1>
           </div>
           {isActive ? (
             <div className={styles.detail__footer__bid__bidform}>
@@ -80,7 +73,7 @@ const Detail = ({ mock, data }) => {
               <h1 style={{ fontWeight: "bolder", fontSize: "1.3rem" }}>
                 Winner:{" "}
                 <span
-                  style={{ color: "rgb(0, 255, 98)", fontWeight: "lighter" }}
+                  style={{ color: success, fontWeight: "lighter" }}
                 >
                   {data.lastBid.from}
                 </span>
@@ -88,7 +81,7 @@ const Detail = ({ mock, data }) => {
               <h1 style={{ fontWeight: "bolder", fontSize: "1.3rem" }}>
                 With the amount of:{" "}
                 <span
-                  style={{ color: "rgb(0, 255, 98)", fontWeight: "lighter" }}
+                  style={{ color: success, fontWeight: "lighter" }}
                 >
                   {data?.lastBid.amount}TRY
                 </span>

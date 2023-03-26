@@ -16,7 +16,21 @@ export default function RootLayout({ children }) {
         <QueryClientProvider client={client}>
           <UserContextWrapper>
             <ItemContextWrapper>
-              <div area-hidden="true" className="overlay" />
+              {/* Background animation ref */}
+              <div class="background">
+                <span />
+                <span />
+                <span />
+                <span />
+                <span />
+                <span />
+                <span />
+                <span />
+                <span />
+                <span />
+                <span />
+                <span />
+              </div>
               {children}
               <ToastContainer theme="dark" />
             </ItemContextWrapper>

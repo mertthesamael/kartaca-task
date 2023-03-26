@@ -63,7 +63,7 @@ const WelcomerContainer = () => {
         {isLoading ? (
           <Spinner />
         ) : (
-          <Tilt glareEnable={false} onMove={offsetHandler} scale={1.1}>
+          <Tilt tiltMaxAngleX={5} glareEnable={false} onMove={offsetHandler} scale={1.1}>
             <div
               style={{
                 boxShadow: `${shadowY}px ${shadowX}px 20px 15px rgb(0, 255, 98)`,

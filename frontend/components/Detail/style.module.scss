@@ -8,9 +8,9 @@
     gap: 2rem;
     overflow: auto;
     background-color: rgba(70, 70, 70, 0.103);
-    backdrop-filter: blur(50px);
+    backdrop-filter: blur(120px);
     border-radius: 15px;
-    
+    box-shadow:0 0 10px -1px black;
     &__header {
         position: relative;
         height: 100%;
