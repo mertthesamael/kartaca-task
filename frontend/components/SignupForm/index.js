@@ -63,6 +63,7 @@ const SignupForm = () => {
         placeholder="Password"
         onChange={(e) => setPassword(e.target.value)}
         name="password"
+        minLength={6}
       />
       <input
         style={error ? { border: "1px solid red", outline: "none" } : {}}
