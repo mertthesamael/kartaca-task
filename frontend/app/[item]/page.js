@@ -15,7 +15,11 @@ const Item = ({ params }) => {
   );
 
   if (loading) {
-    return <Spinner/>;
+    return(
+      <main className={styles.item}>
+        <Spinner />
+      </main>
+      );
   }
 
   //If there is no item with given ID, return 404 page.
