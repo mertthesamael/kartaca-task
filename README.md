@@ -47,6 +47,8 @@ I tried to use glassmorph theme on design, once you've logged in to your account
 People who are not signed up to the app are not allowed to write or read the database data.
 ![image](https://user-images.githubusercontent.com/79616834/227814579-a134eb60-a053-4775-a6d0-b894860ae982.png)
 
+***Also here is an example of firestore database that contains Auction Items***
+![image](https://user-images.githubusercontent.com/79616834/227819962-62a619a8-e887-4600-9aac-bf9b760417d9.png)
 
 ## How i solved the challange
 
