@@ -18,6 +18,7 @@ To start this project with docker, simyple use:
 ``
   docker compose up -d
 ``
+**App will work on port:3000**<br/>
 
 **🧪Testing**<br/> 
 I used Jest for unit testing.
